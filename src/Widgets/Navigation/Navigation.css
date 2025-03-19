@@ -1,0 +1,13 @@
+.nav-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+button {
+    padding: 10px 24px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}

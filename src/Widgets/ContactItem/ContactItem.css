@@ -1,0 +1,13 @@
+.contact-item{
+  display: flex;
+  gap: 22px;
+}
+
+.contact-name{
+  width: 200px;
+  text-align: right;
+}
+
+h4{
+  margin: 8px 0;
+}
