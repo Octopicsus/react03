@@ -1,17 +1,15 @@
-import { useState } from 'react'
-import './App.css'
-import Navigation from './Widgets/Navigation/Navigation'
-import List from './Widgets/List/List'
+
+import "./App.css";
+import Navigation from "./Widgets/Navigation/Navigation";
+import Extra from "./Widgets/extra/Extra";
 
 function App() {
-
-
   return (
     <>
-     <Navigation/>
-
+      <Navigation />
+      <Extra />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

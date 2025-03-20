@@ -6,14 +6,17 @@ import EditorPopup from "../EditorPopup/EditorPopup";
 export default function List({ contacts: propContacts = [], updateContact }) {
   const [apiContacts, setApiContacts] = useState([]);
   const [editingContact, setEditingContact] = useState(null);
-  const [showEditModal, setShowEditModal] = useState(false);
+  const [showEditPopup, setShowEditPopup] = useState(false);
 
   const getDefaultList = async () => {
     try {
       const apiUrl = "https://jsonplaceholder.typicode.com/users";
+
       const response = await fetch(apiUrl);
       const data = await response.json();
+
       setApiContacts(data);
+
     } catch (error) {
       console.log("UNFOUND DATA");
     }
@@ -25,11 +28,11 @@ export default function List({ contacts: propContacts = [], updateContact }) {
 
   const handleEditContact = (contact) => {
     setEditingContact(contact);
-    setShowEditModal(true);
+    setShowEditPopup(true);
   };
 
-  const handleCloseModal = () => {
-    setShowEditModal(false);
+  const handleClosePopup = () => {
+    setShowEditPopup(false);
     setEditingContact(null);
   };
 
@@ -50,7 +53,7 @@ export default function List({ contacts: propContacts = [], updateContact }) {
       }
     }
 
-    handleCloseModal();
+    handleClosePopup();
   };
 
   const allContacts = [...propContacts, ...apiContacts];
@@ -66,10 +69,10 @@ export default function List({ contacts: propContacts = [], updateContact }) {
         />
       ))}
 
-      {showEditModal && editingContact && (
+      {showEditPopup && editingContact && (
         <EditorPopup
           contact={editingContact}
-          onClose={handleCloseModal}
+          onClose={handleClosePopup}
           onSave={handleSaveEdit}
         />
       )}
