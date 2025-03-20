@@ -1,11 +1,18 @@
 import React from "react";
 import "./ContactItem.css";
 
-export default function ContactItem({ id, name, phoneNumber, actions }) {
+export default function ContactItem({ name, phoneNumber, onClick }) {
+  const handleClick = (e) => {
+    
+    if (onClick && typeof onClick === 'function') {
+      onClick(e);
+    }
+  };
+
   return (
-    <div className="contact-item" id={id}>
-      <h4 className="contact-name">{name}</h4>
-      <h4>{phoneNumber}</h4>
+    <div className="contact-item" onClick={handleClick}>
+      <div className="contact-name">{name}</div>
+      <div className="contact-phone">{phoneNumber}</div>
     </div>
   );
 }

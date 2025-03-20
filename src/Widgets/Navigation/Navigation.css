@@ -11,3 +11,31 @@ button {
     border: none;
     cursor: pointer;
 }
+
+.error-message {
+    color: #e74c3c;
+    font-size: 12px;
+    margin-top: 4px;
+    padding-left: 20px;
+    min-height: 18px;
+    display: block;
+    font-weight: 400;
+    position: relative;
+}
+
+.input-group {
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.input-group input {
+    /* width: 100%; */
+    /* padding: 8px 10px; */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.input-group input.error {
+    border-color: #e74c3c;
+}

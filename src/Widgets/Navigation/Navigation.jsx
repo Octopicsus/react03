@@ -6,26 +6,37 @@ import NewNumber from "../NewNumber/NewNumber";
 export default function Navigation() {
   const [showList, setShowList] = useState(true);
   const [showEditor, setShowEditor] = useState(false);
+  const [contacts, setContacts] = useState([]);
 
-  const handleshowList = () => {
+  const handleShowList = () => {
     setShowList(true);
     setShowEditor(false);
   };
 
-  const handleshowEditor = () => {
+  const handleShowEditor = () => {
     setShowList(false);
     setShowEditor(true);
+  };
+
+  const addContact = (newContact) => {
+    setContacts([newContact, ...contacts]);
+  };
+
+  const updateContact = (updatedContact) => {
+    setContacts(contacts.map(contact => 
+      contact.id === updatedContact.id ? updatedContact : contact
+    ));
   };
 
   return (
     <>
       <div className="nav-wrapper">
-        <button onClick={handleshowList}>Phones List</button>
-        <button onClick={handleshowEditor}>Add Number</button>
+        <button onClick={handleShowList}>Phones List</button>
+        <button onClick={handleShowEditor}>Add Contact</button>
       </div>
 
-      {showList && <List />}
-      {showEditor && <NewNumber />}
+      {showList && <List contacts={contacts} updateContact={updateContact} />}
+      {showEditor && <NewNumber addContact={addContact} switchToList={handleShowList} />}
     </>
   );
 }
