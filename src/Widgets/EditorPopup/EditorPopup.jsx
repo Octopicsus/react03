@@ -7,6 +7,7 @@ export default function EditorPopup({ contact, onClose, onSave }) {
     name: contact.name, 
     phone: contact.phone 
   });
+  
   const [errors, setErrors] = useState({ name: "", phone: "" });
 
   const validateName = (name) => {
