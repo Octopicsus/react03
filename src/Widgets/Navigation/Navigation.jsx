@@ -31,8 +31,8 @@ export default function Navigation() {
   return (
     <>
       <div className="nav-wrapper">
-        <button onClick={handleShowList}>Phones List</button>
-        <button onClick={handleShowEditor}>Add Contact</button>
+        <button onClick={handleShowList} disabled={showList}>Phones List</button>
+        <button onClick={handleShowEditor} disabled={showEditor}>Add Contact</button>
       </div>
 
       {showList && <List contacts={contacts} updateContact={updateContact} />}

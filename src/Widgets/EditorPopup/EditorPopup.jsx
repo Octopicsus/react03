@@ -34,25 +34,21 @@ export default function EditorPopup({ contact, onClose, onSave }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    const nameError = validateName(editedContact.name);
-    const phoneError = validatePhone(editedContact.phone);
-
-    if (nameError || phoneError) {
-      setErrors({ name: nameError, phone: phoneError });
-      return;
-    }
-
     onSave(editedContact);
   };
 
-  const isFormValid =
-    !errors.name && !errors.phone && editedContact.name && editedContact.phone;
+  const handleOverlayClick = (e) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
+  const isFormValid = !errors.name && !errors.phone;
 
   return (
-    <div className="overlay">
+    <div className="overlay" onClick={handleOverlayClick}>
       <div className="content">
-        <h3>Edit Contact</h3>
+        <h2>Edit contact</h2>
         <form onSubmit={handleSubmit}>
           <div className="input-group">
             <label htmlFor="editName">Name: </label>
@@ -63,7 +59,7 @@ export default function EditorPopup({ contact, onClose, onSave }) {
               value={editedContact.name}
               onChange={handleChange}
               className={errors.name ? "error" : ""}
-              required
+           
             />
             {errors.name && <div className="error-message">{errors.name}</div>}
           </div>
@@ -77,7 +73,7 @@ export default function EditorPopup({ contact, onClose, onSave }) {
               value={editedContact.phone}
               onChange={handleChange}
               className={errors.phone ? "error" : ""}
-              required
+             
             />
             {errors.phone && (
               <div className="error-message">{errors.phone}</div>
@@ -85,11 +81,11 @@ export default function EditorPopup({ contact, onClose, onSave }) {
           </div>
 
           <div className="buttons">
-            <button type="button" onClick={onClose}>
-              Cancel
-            </button>
             <button type="submit" disabled={!isFormValid}>
               Save
+            </button>
+            <button type="button" onClick={onClose}>
+              Cancel
             </button>
           </div>
         </form>

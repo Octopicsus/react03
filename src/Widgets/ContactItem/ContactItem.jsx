@@ -10,9 +10,11 @@ export default function ContactItem({ name, phoneNumber, onClick }) {
   };
 
   return (
+    <>
     <div className="contact-item" onClick={handleClick}>
       <div className="contact-name">{name}</div>
       <div className="contact-phone">{phoneNumber}</div>
     </div>
+    </>
   );
 }

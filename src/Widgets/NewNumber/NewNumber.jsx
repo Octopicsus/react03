@@ -36,15 +36,7 @@ export default function NewNumber({ addContact, switchToList }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    
-    const nameError = validateName(newContact.name);
-    const phoneError = validatePhone(newContact.phone);
-    
-    if (nameError || phoneError) {
-      setErrors({ name: nameError, phone: phoneError });
-      return;
-    }
-    
+
     if (newContact.name && newContact.phone) {
       addContact({
         id: newContact.name,
@@ -56,7 +48,8 @@ export default function NewNumber({ addContact, switchToList }) {
     }
   };
 
-  const isFormValid = !errors.name && !errors.phone && newContact.name && newContact.phone;
+  const isFormValid =
+    !errors.name && !errors.phone && newContact.name && newContact.phone;
 
   return (
     <div>
@@ -71,7 +64,6 @@ export default function NewNumber({ addContact, switchToList }) {
             name="inputName"
             value={newContact.name}
             onChange={handleChange}
-            required
           />
           {errors.name && <div className="error-message">{errors.name}</div>}
         </div>
@@ -84,7 +76,6 @@ export default function NewNumber({ addContact, switchToList }) {
             name="inputPhone"
             value={newContact.phone}
             onChange={handleChange}
-            required
           />
           {errors.phone && <div className="error-message">{errors.phone}</div>}
         </div>

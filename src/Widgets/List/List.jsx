@@ -16,7 +16,6 @@ export default function List({ contacts: propContacts = [], updateContact }) {
       const data = await response.json();
 
       setApiContacts(data);
-
     } catch (error) {
       console.log("UNFOUND DATA");
     }
@@ -48,9 +47,7 @@ export default function List({ contacts: propContacts = [], updateContact }) {
         )
       );
     } else {
-      if (updateContact) {
-        updateContact(updatedContact);
-      }
+      updateContact(updatedContact);
     }
 
     handleClosePopup();
@@ -59,23 +56,26 @@ export default function List({ contacts: propContacts = [], updateContact }) {
   const allContacts = [...propContacts, ...apiContacts];
 
   return (
-    <div className="list-wrapper">
-      {allContacts.map((item) => (
-        <ContactItem
-          key={item.id}
-          name={item.name}
-          phoneNumber={item.phone}
-          onClick={() => handleEditContact(item)}
-        />
-      ))}
+    <>
+      <div className="list-wrapper">
+        <h3 className="list-title">Phone list</h3>
+        {allContacts.map((item) => (
+          <ContactItem
+            key={item.id}
+            name={item.name}
+            phoneNumber={item.phone}
+            onClick={() => handleEditContact(item)}
+          />
+        ))}
 
-      {showEditPopup && editingContact && (
-        <EditorPopup
-          contact={editingContact}
-          onClose={handleClosePopup}
-          onSave={handleSaveEdit}
-        />
-      )}
-    </div>
+        {showEditPopup && editingContact && (
+          <EditorPopup
+            contact={editingContact}
+            onClose={handleClosePopup}
+            onSave={handleSaveEdit}
+          />
+        )}
+      </div>
+    </>
   );
 }
