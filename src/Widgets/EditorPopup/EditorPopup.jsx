@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./EditorPopup.css";
 
-export default function EditorPopup({ contact, onClose, onSave }) {
+export default function EditorPopup({ contact, onClose, onSave,  onDelete  }) {
   const [editedContact, setEditedContact] = useState({
     id: contact.id,
     name: contact.name,
@@ -37,6 +37,14 @@ export default function EditorPopup({ contact, onClose, onSave }) {
     onSave(editedContact);
   };
 
+  const handleDelete = () => {
+    if (onDelete) {
+      onDelete(contact.id);
+    }
+
+    onClose();
+  };
+
   const handleOverlayClick = (event) => {
     if (event.target === event.currentTarget) {
       onClose();
@@ -59,7 +67,6 @@ export default function EditorPopup({ contact, onClose, onSave }) {
               value={editedContact.name}
               onChange={handleChange}
               className={errors.name ? "error" : ""}
-           
             />
             {errors.name && <div className="error-message">{errors.name}</div>}
           </div>
@@ -73,7 +80,6 @@ export default function EditorPopup({ contact, onClose, onSave }) {
               value={editedContact.phone}
               onChange={handleChange}
               className={errors.phone ? "error" : ""}
-             
             />
             {errors.phone && (
               <div className="error-message">{errors.phone}</div>
@@ -84,8 +90,8 @@ export default function EditorPopup({ contact, onClose, onSave }) {
             <button type="submit" disabled={!isFormValid}>
               Save
             </button>
-            <button type="button" onClick={onClose}>
-              Cancel
+            <button type="button" className="delete-btn" onClick={handleDelete}>
+            Delete
             </button>
           </div>
         </form>

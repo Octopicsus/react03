@@ -53,6 +53,14 @@ export default function List({ contacts: propContacts = [], updateContact }) {
     handleClosePopup();
   };
 
+  const handleDeleteContact = (contactId) => {
+    if (apiContacts.some((contact) => contact.id === contactId)) {
+      setApiContacts(apiContacts.filter((contact) => contact.id !== contactId));
+    } else {
+    }
+    handleClosePopup();
+  };
+
   const allContacts = [...propContacts, ...apiContacts];
 
   return (
@@ -70,9 +78,10 @@ export default function List({ contacts: propContacts = [], updateContact }) {
 
         {showEditPopup && editingContact && (
           <EditorPopup
-            contact={editingContact}
-            onClose={handleClosePopup}
-            onSave={handleSaveEdit}
+          contact={editingContact}
+          onClose={handleClosePopup}
+          onSave={handleSaveEdit}
+          onDelete={handleDeleteContact}
           />
         )}
       </div>
