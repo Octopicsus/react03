@@ -37,8 +37,8 @@ export default function EditorPopup({ contact, onClose, onSave }) {
     onSave(editedContact);
   };
 
-  const handleOverlayClick = (e) => {
-    if (e.target === e.currentTarget) {
+  const handleOverlayClick = (event) => {
+    if (event.target === event.currentTarget) {
       onClose();
     }
   };
